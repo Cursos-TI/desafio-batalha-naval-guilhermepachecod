@@ -75,7 +75,7 @@ int main() {
     // CONE. Topo no meio da primeira linha da matriz.
     for (int r = 0; r < 5; r++) {
         for (int c = 0; c < 5; c++) {
-            if ((c - 2 <= r) && (2 - c <= r)) { // equivalente a abs(c-2) <= r
+            if ((c - 2 <= r) && (2 - c <= r)) {
                 cone[r][c] = 1;
             }
         }
@@ -100,16 +100,14 @@ int main() {
             }
         }
     }
+
     // pontos de origem no tabuleiro
-    // cone: origem = APICE
     int origemConeLinha = 3;
     int origemConeCol   = 5;
 
-    // cruz: origem = CENTRO da matriz
     int origemCruzLinha = 7;
     int origemCruzCol   = 7;
 
-    // octaedro: origem = CENTRO da matriz
     int origemOctLinha = 4;
     int origemOctCol   = 1;
 
@@ -117,8 +115,8 @@ int main() {
     for (int r = 0; r < 5; r++) {
         for (int c = 0; c < 5; c++) {
             if (cone[r][c] == 1) {
-                int br = origemConeLinha + r;      // desloca para baixo a partir do apice
-                int bc = origemConeCol   + (c - 2);// centraliza pelo meio do topo
+                int br = origemConeLinha + r;
+                int bc = origemConeCol   + (c - 2);
                 if (br >= 0 && br < 10 && bc >= 0 && bc < 10) {
                     efeito[br][bc] = 5;
                 }
@@ -155,7 +153,7 @@ int main() {
     //0 agua, 3 navio, 5 habilidade
     for (i = 0; i < 10; i++) {
         for (j = 0; j < 10; j++) {
-            int val = (efeito[i][j] == 5) ? 5 : tabuleiro[i][j];
+            int val = (efeito[i][j] ? 5 : tabuleiro[i][j]);
             printf("%d ", val);
         }
         printf("\n");
